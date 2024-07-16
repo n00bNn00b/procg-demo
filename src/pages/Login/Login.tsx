@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import axios from "axios";
 
 interface formData {
@@ -11,7 +11,7 @@ const Login = () => {
     email: "",
     password: "",
   });
-
+console.log("email", formData.email, "password", formData.password)
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
 
@@ -23,7 +23,8 @@ const Login = () => {
     }));
   };
 
-  const login = async () => {
+  const login = async (e: FormEvent) => {
+    e.preventDefault();
     await axios
       .post(
         "http://129.146.85.244:3000/login",
@@ -54,7 +55,7 @@ const Login = () => {
         <input type="email" value={formData.email} onChange={handleChange} name="email" />
         <label>Password</label>
         <input type="password" value={formData.password} onChange={handleChange} name="password"/>
-        <input type="button" value="Login" />
+        <input type="submit" value="Submit" />
       </form>
     </div>
   );
