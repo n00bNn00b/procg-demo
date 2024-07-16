@@ -1,8 +1,15 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+interface Users {
+  user_id?: number;
+  first_name?: string;
+  middle_name?: string;
+  last_name?: string;
+  job_title?: string;
+}
 const Home = () => {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState<Users[] | []>([]);
 
   useEffect(() => {
     const fetchData = async () => {
